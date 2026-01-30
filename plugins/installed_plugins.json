@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "plugins": {
+    "superpowers@superpowers-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kakers/.claude/plugins/cache/superpowers-marketplace/superpowers/4.0.0",
+        "version": "4.0.0",
+        "installedAt": "2025-12-05T21:00:28.204Z",
+        "lastUpdated": "2025-12-18T01:26:58.104Z",
+        "gitCommitSha": "154d664373569a83289684d7b01742a82cca4eaf"
+      }
+    ],
+    "pr-review-toolkit@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/pr-review-toolkit/27d2b86d72da",
+        "version": "27d2b86d72da",
+        "installedAt": "2026-01-05T01:35:46.929Z",
+        "lastUpdated": "2026-01-30T01:57:58.701Z"
+      }
+    ],
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/frontend-design/27d2b86d72da",
+        "version": "27d2b86d72da",
+        "installedAt": "2026-01-05T01:38:05.398Z",
+        "lastUpdated": "2026-01-30T01:57:58.718Z"
+      }
+    ],
+    "ralph-wiggum@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/ralph-wiggum/dbc4a7733cd4",
+        "version": "dbc4a7733cd4",
+        "installedAt": "2026-01-05T01:38:56.786Z",
+        "lastUpdated": "2026-01-06T05:17:03.188Z"
+      }
+    ],
+    "playwright@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/kakers/Desktop/chatable-mono",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/playwright/96276205880a",
+        "version": "96276205880a",
+        "installedAt": "2026-01-17T06:10:06.418Z",
+        "lastUpdated": "2026-01-17T06:10:06.418Z",
+        "gitCommitSha": "96276205880a60fd66bbae981f5ab568e70c4cbf"
+      }
+    ],
+    "swift-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/swift-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-01-27T01:37:36.396Z",
+        "lastUpdated": "2026-01-27T01:37:36.396Z",
+        "gitCommitSha": "e30768372b4150ca1bc0839d93283e8edc30d60d"
+      }
+    ]
+  }
+}
