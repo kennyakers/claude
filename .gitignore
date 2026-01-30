@@ -1,0 +1,45 @@
+# macOS
+.DS_Store
+
+# Caches
+cache/
+paste-cache/
+stats-cache.json
+plugins/cache/
+plugins/install-counts-cache.json
+
+# Session and history
+history.jsonl
+session-env/
+shell-snapshots/
+file-history/
+
+# Task and todo state (per-session)
+tasks/
+todos/
+
+# Debug logs
+debug/
+
+# Downloads
+downloads/
+
+# Plans (operational, not config)
+plans/
+
+# Project-specific state
+projects/
+
+# Analytics and telemetry
+statsig/
+telemetry/
+
+# Plugins state (auto-generated, but track installed_plugins.json)
+plugins/known_marketplaces.json
+plugins/marketplaces/
+
+# IDE lock files
+ide/
+
+# Nested claude directories
+.claude/
