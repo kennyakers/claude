@@ -33,19 +33,31 @@ Significant changes include:
 - New development commands or workflows
 - Changed conventions or patterns
 
-## GSD (Get Shit Done) Sync Workflow
+## GSD (Get Shit Done)
 
-This repo contains customizations on top of [GSD](https://github.com/glittercowboy/get-shit-done). The upstream is tracked via the `gsd` remote.
+GSD is installed from a personal fork with customizations:
+- **Fork:** `~/projects/get-shit-done` → github.com/kennyakers/get-shit-done
+- **Upstream:** github.com/glittercowboy/get-shit-done
 
-**To sync updates from GSD:**
+**⚠️ DO NOT use `/gsd:update`** — it installs from npm, not the fork.
+
+**To update GSD:**
 ```bash
-git fetch gsd
-git merge gsd/main
-# Resolve any conflicts, then commit
+cd ~/projects/get-shit-done
+git pull origin main
+node bin/install.js --global
 ```
 
-**Remotes:**
-- `origin` → github.com/kennyakers/claude (this repo with customizations)
-- `gsd` → github.com/glittercowboy/get-shit-done (upstream)
+**To sync upstream changes:**
+```bash
+cd ~/projects/get-shit-done
+git fetch upstream
+git merge upstream/main
+# Resolve conflicts, push, then reinstall
+```
 
-Custom changes (EARS requirements, code-simplifier integration, etc.) are preserved as commits on top of GSD's base.
+**Customizations in fork:**
+- EARS-inspired behavioral requirements (When/While/If patterns)
+- Behavioral checklist in questioning workflow
+- Code simplifier integration in execute-phase
+- PR review and update-agent-knowledge in complete-milestone

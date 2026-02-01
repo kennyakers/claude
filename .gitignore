@@ -43,3 +43,11 @@ ide/
 
 # Nested claude directories
 .claude/
+
+# Image cache
+image-cache/
+
+# GSD-managed files (installed from fork)
+commands/gsd/
+agents/gsd-*.md
+get-shit-done/
