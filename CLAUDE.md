@@ -32,3 +32,20 @@ Significant changes include:
 - Architecture changes
 - New development commands or workflows
 - Changed conventions or patterns
+
+## GSD (Get Shit Done) Sync Workflow
+
+This repo contains customizations on top of [GSD](https://github.com/glittercowboy/get-shit-done). The upstream is tracked via the `gsd` remote.
+
+**To sync updates from GSD:**
+```bash
+git fetch gsd
+git merge gsd/main
+# Resolve any conflicts, then commit
+```
+
+**Remotes:**
+- `origin` → github.com/kennyakers/claude (this repo with customizations)
+- `gsd` → github.com/glittercowboy/get-shit-done (upstream)
+
+Custom changes (EARS requirements, code-simplifier integration, etc.) are preserved as commits on top of GSD's base.
