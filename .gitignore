@@ -51,3 +51,7 @@ image-cache/
 commands/gsd/
 agents/gsd-*.md
 get-shit-done/
+gsd-file-manifest.json
+
+# Agent teams
+teams/

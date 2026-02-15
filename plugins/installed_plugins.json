@@ -14,19 +14,19 @@
     "pr-review-toolkit@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/pr-review-toolkit/27d2b86d72da",
-        "version": "27d2b86d72da",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/pr-review-toolkit/2cd88e7947b7",
+        "version": "2cd88e7947b7",
         "installedAt": "2026-01-05T01:35:46.929Z",
-        "lastUpdated": "2026-01-30T01:57:58.701Z"
+        "lastUpdated": "2026-02-07T00:38:51.400Z"
       }
     ],
     "frontend-design@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/frontend-design/27d2b86d72da",
-        "version": "27d2b86d72da",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/frontend-design/2cd88e7947b7",
+        "version": "2cd88e7947b7",
         "installedAt": "2026-01-05T01:38:05.398Z",
-        "lastUpdated": "2026-01-30T01:57:58.718Z"
+        "lastUpdated": "2026-02-07T00:38:51.395Z"
       }
     ],
     "ralph-wiggum@claude-plugins-official": [
@@ -57,6 +57,16 @@
         "installedAt": "2026-01-27T01:37:36.396Z",
         "lastUpdated": "2026-01-27T01:37:36.396Z",
         "gitCommitSha": "e30768372b4150ca1bc0839d93283e8edc30d60d"
+      }
+    ],
+    "clangd-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/kakers/.claude/plugins/cache/claude-plugins-official/clangd-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-11T06:01:10.602Z",
+        "lastUpdated": "2026-02-11T06:01:10.602Z",
+        "gitCommitSha": "2cd88e7947b7382e045666abee790c7f55f669f3"
       }
     ]
   }
