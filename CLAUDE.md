@@ -33,6 +33,10 @@ Significant changes include:
 - New development commands or workflows
 - Changed conventions or patterns
 
+## Pull Requests
+
+Do not include a "Test plan" section in PR descriptions.
+
 ## GSD (Get Shit Done)
 
 GSD is installed from a personal fork with customizations:

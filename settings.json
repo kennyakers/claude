@@ -70,8 +70,6 @@
       "Bash(git merge --abort*)",
       "Bash(git reflog expire*)",
       "Bash(git gc --prune*)",
-      "Bash(rm *)",
-      "Bash(rmdir *)",
       "Bash(chmod *)",
       "Bash(chown *)",
       "Bash(sudo *)",
@@ -104,7 +102,16 @@
       }
     ],
     "Stop": [],
-    "PostToolUse": []
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/kakers/.claude/hooks/gsd-context-monitor.js\""
+          }
+        ]
+      }
+    ]
   },
   "statusLine": {
     "type": "command",
