@@ -59,8 +59,6 @@
       "Bash(uv run:*)"
     ],
     "deny": [
-      "Bash(git push *--force*)",
-      "Bash(git push *-f*)",
       "Bash(git reset --hard*)",
       "Bash(git clean -f*)",
       "Bash(git checkout -- .*)",
@@ -102,16 +100,7 @@
       }
     ],
     "Stop": [],
-    "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"/Users/kakers/.claude/hooks/gsd-context-monitor.js\""
-          }
-        ]
-      }
-    ]
+    "PostToolUse": []
   },
   "statusLine": {
     "type": "command",
