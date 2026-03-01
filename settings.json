@@ -2,6 +2,10 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "WebSearch",
@@ -59,7 +63,6 @@
       "Bash(uv run:*)"
     ],
     "deny": [
-      "Bash(git reset --hard*)",
       "Bash(git clean -f*)",
       "Bash(git checkout -- .*)",
       "Bash(git branch -D*)",
@@ -114,9 +117,5 @@
     "swift-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true
   },
-  "alwaysThinkingEnabled": true,
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  }
+  "alwaysThinkingEnabled": true
 }
