@@ -33,7 +33,9 @@ Significant changes include:
 - New development commands or workflows
 - Changed conventions or patterns
 
-## Pull Requests
+## Commits & Pull Requests
+
+Always follow the commit and PR naming conventions of the repo you're working in. Check `git log --oneline -10` before your first commit to match the existing pattern (e.g. conventional commits `type(scope): description`).
 
 Do not include a "Test plan" section in PR descriptions.
 

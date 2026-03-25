@@ -60,15 +60,44 @@
       "Skill(update-agent-knowledge)",
       "Skill(pr-review-toolkit:review-pr)",
       "Bash(pnpm typecheck:*)",
-      "Bash(uv run:*)"
+      "Bash(uv run:*)",
+      "Bash(gh pr:*)",
+      "mcp__context7__query-docs",
+      "Bash(gh api:*)",
+      "Bash(curl:*)",
+      "Bash(ln:*)",
+      "Bash(pnpm lint:check:*)",
+      "Bash(pnpm --filter=@chatable-audiobook/web exec tsc:*)",
+      "Bash(npx biome:*)",
+      "Bash(pnpm biome check:*)",
+      "Bash(pnpm why:*)",
+      "Bash(node /Users/kakers/.claude/get-shit-done/*:*)",
+      "Bash(pnpm ls:*)",
+      "Bash(do echo:*)",
+      "Bash(done)",
+      "Bash(aws s3:*)",
+      "Bash(node:*)",
+      "Bash(pnpm tsx:*)",
+      "Bash(python3:*)",
+      "Bash(gh:*)",
+      "mcp__ios-simulator__ui_swipe",
+      "Bash(npx react-native:*)",
+      "Bash(pnpm ios:*)",
+      "mcp__ios-simulator__ui_describe_point",
+      "mcp__ios-simulator__open_simulator",
+      "Bash(bundle:*)",
+      "Bash(git add:*)",
+      "Read(//Users/kakers/Desktop/chatable-monorepo/apps/audiobook-mobile/ios/**)",
+      "Read(//Users/kakers/Desktop/chatable-monorepo/apps/audiobook-mobile/ios/ChatableAudiobook.xcodeproj/**)",
+      "Read(//Users/kakers/Desktop/chatable-monorepo/apps/audiobook-mobile/ios/ChatableAudiobook/**)",
+      "Bash(pnpm --filter web typecheck 2>&1)",
+      "Bash(pnpm --filter mobile typecheck 2>&1)"
     ],
     "deny": [
       "Bash(git clean -f*)",
       "Bash(git checkout -- .*)",
       "Bash(git branch -D*)",
       "Bash(git branch *--delete --force*)",
-      "Bash(git rebase*)",
-      "Bash(git merge --abort*)",
       "Bash(git reflog expire*)",
       "Bash(git gc --prune*)",
       "Bash(chmod *)",
@@ -87,9 +116,10 @@
       "Bash(uv pip uninstall *)",
       "Bash(brew uninstall *)",
       "Bash(brew remove *)",
-      "Bash(brew cleanup --prune-all*)"
+      "Bash(brew cleanup --prune-all*)",
+      "Bash(rmdir *)"
     ],
-    "defaultMode": "default"
+    "defaultMode": "acceptEdits"
   },
   "hooks": {
     "SessionStart": [
@@ -113,9 +143,21 @@
     "superpowers@superpowers-marketplace": true,
     "pr-review-toolkit@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "ralph-wiggum@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
-    "clangd-lsp@claude-plugins-official": true
+    "clangd-lsp@claude-plugins-official": true,
+    "everything-claude-code@everything-claude-code": true
   },
-  "alwaysThinkingEnabled": true
+  "extraKnownMarketplaces": {
+    "everything-claude-code": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/everything-claude-code"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "voiceEnabled": true,
+  "autoDreamEnabled": true,
+  "skipDangerousModePermissionPrompt": true
 }
