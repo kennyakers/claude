@@ -58,3 +58,8 @@ teams/
 
 backups/
 sessions/
+plugins/blocklist.json
+plugins/installed_plugins.json
+metrics/
+homunculus/
+mcp-needs-auth-cache.json
