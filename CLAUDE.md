@@ -67,6 +67,8 @@ Always follow the commit and PR naming conventions of the repo you're working in
 
 Do not include a "Test plan" section in PR descriptions.
 
+When writing PR descriptions, run the `/humanizer` skill on the description text before submitting.
+
 ## GSD (Get Shit Done)
 
 GSD is installed from a personal fork with customizations:
