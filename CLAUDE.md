@@ -65,9 +65,13 @@ Significant changes include:
 
 Always follow the commit and PR naming conventions of the repo you're working in. Check `git log --oneline -10` before your first commit to match the existing pattern (e.g. conventional commits `type(scope): description`).
 
-Do not include a "Test plan" section in PR descriptions.
+**PR descriptions — keep them short and scannable.** I repeatedly have to ask to trim these, so default to lean:
 
-When writing PR descriptions, run the `/humanizer` skill on the description text before submitting.
+- Lead with a 1-2 sentence summary, then a short bulleted list of the actual changes. That's usually the whole description.
+- Only the summary + changes are required. Treat every other section (How it works, Review notes, Remaining work, Migration, Files touched, test counts) as opt-in — include one only if it carries information the diff and summary don't. When unsure, leave it out; I'll ask if I want more.
+- No "Test plan" section. Ever.
+- Match the shape of recent PRs in the repo, especially `develop → main` release PRs — check an existing example before drafting.
+- Run the `/humanizer` skill on the description before submitting **every** PR — including ad-hoc `gh pr create`, not just GSD/ship flows. Humanizer fixes tone, not length; trim for length first, then humanize.
 
 ## GSD (Get Shit Done)
 
