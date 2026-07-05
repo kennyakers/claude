@@ -63,3 +63,10 @@ plugins/installed_plugins.json
 metrics/
 homunculus/
 mcp-needs-auth-cache.json
+jobs/
+uploads/
+.last-cleanup
+.gitignore
+daemon*
+gh-pr-status-cache.json
+.gitignore

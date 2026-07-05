@@ -48,6 +48,21 @@ Less cheerleader, more sparring partner. Keep the personality, lose the politene
 
 **Parallelization**: When tasks are independent, spawn multiple agents simultaneously.
 
+## Write-Time Defaults
+
+Generation-time defaults, not review-time cleanup — I shouldn't have to ask for these after the fact:
+
+- **Comments**: default to none. Comment only the non-obvious "why", 1-2 lines max. Never put tracking IDs (Linear tickets, plan numbers) in code, comments, or test names — they go stale.
+- **New files**: never create a file for one small function or a thin wrapper — find the existing home first. A new file needs a reason the existing modules can't absorb it.
+- **Reuse before writing**: search for existing functions/routes/components to extend before adding parallel capability. DRY is a pre-write check, not a later refactor.
+- **No machinery for small changes**: plain mechanism first — no param threading, wrapper components, or dev harnesses when a direct change works. Refactor over hack: if the clean fix means touching the design, do that instead of patching around it.
+- **Evidence before fixes**: state where and how often a bug was observed before fixing it. Unreproduced rarity → drop it. Never inherit a root-cause claim (auto-fix agent, earlier session) without verifying the repro yourself — including that it's the right app/file. Don't blame data/seed/environment until you've traced the code path.
+- **UI changes**: verify light AND dark mode before claiming done. Visual bugs are first-class bugs.
+
+## Written Deliverables
+
+- **Ghost-writing for me (Slack, email)**: terse list fragments, not complete sentences or report shapes. Banned vocab: "scope", "good instinct", "lands", "ship", "net", "TLDR", sycophancy. Match my voice first, then run /humanizer.
+
 ## Documentation Maintenance
 
 **Always update the project's CLAUDE.md after significant codebase changes.**
@@ -72,21 +87,27 @@ Always follow the commit and PR naming conventions of the repo you're working in
 - No "Test plan" section. Ever.
 - Match the shape of recent PRs in the repo, especially `develop → main` release PRs — check an existing example before drafting.
 - Run the `/humanizer` skill on the description before submitting **every** PR — including ad-hoc `gh pr create`, not just GSD/ship flows. Humanizer fixes tone, not length; trim for length first, then humanize.
+- No Linear ticket IDs in PR titles — description body only.
+- Draft PRs get a complete, production-quality title and description — no "WIP" / "do not merge" banners.
 
 ## GSD (Get Shit Done)
 
 GSD is installed from a personal fork with customizations:
 
 - **Fork:** `~/projects/get-shit-done` → github.com/kennyakers/get-shit-done
-- **Upstream:** github.com/glittercowboy/get-shit-done
+- **Upstream:** github.com/open-gsd/gsd-core (the project was rebooted under a new org in 2026-06; the old `glittercowboy`/`gsd-build` repos are dead). Default branch is **`next`** (active dev); **`main`** is the release line — sync from `main`.
 
-**⚠️ DO NOT use `/gsd:update`** — it installs from npm, not the fork.
+**Reboot notes (since v1.34 → relaunched at v1.4.x):** the `get-shit-done/` dir was renamed to `gsd-core/`, `sdk/` was replaced by a TypeScript `src/` tree, and install now needs a build step. Slash-command namespace changed from `/gsd:foo` to `/gsd-foo` (e.g. `/gsd-new-project`).
+
+**⚠️ DO NOT update from npm** — always install from the fork.
 
 **To update GSD:**
 
 ```bash
 cd ~/projects/get-shit-done
 git pull origin main
+npm install          # triggers prepare → build:lib
+npm run build        # builds hooks too (build:lib + build:hooks); required or install skips hooks
 node bin/install.js --global
 ```
 
@@ -95,16 +116,19 @@ node bin/install.js --global
 ```bash
 cd ~/projects/get-shit-done
 git fetch upstream
-git merge upstream/main
-# Resolve conflicts, push, then reinstall
+git merge upstream/main        # release line; gsd-core/ is the workflow dir now
+# Resolve conflicts, then: npm install && npm run build && node bin/install.js --global
 ```
 
-**Customizations in fork:**
+Last full sync: 2026-06-13 to v1.4.5 (branch `sync/open-gsd-2026-06-13`, merged to `main`). Pre-sync `main` is preserved at tag `backup/pre-open-gsd-sync`.
 
-- EARS-inspired behavioral requirements (When/While/If patterns)
-- Behavioral checklist in questioning workflow
-- Code simplifier integration in execute-phase
-- PR review and update-agent-knowledge in complete-milestone
+**Customizations in fork (re-ported onto gsd-core):**
+
+- EARS-inspired behavioral requirements (When/While/If patterns) + behavioral checklist in the questioning workflow
+- `/simplify` skill gate in `gsd-core/workflows/execute-phase.md` (post-verification cleanup)
+- `/update-agent-knowledge` gate in `execute-phase` (moved out of complete-milestone, so it runs while the session still has full context)
+- Rejected-alternatives column in the Key Decisions table for cross-milestone decision recall
+- (Dropped on the 2026-06 sync: semantic-area commit scopes — upstream's `.phase-manifest.json` now covers the retrieval need)
 
 <!-- GSD:profile-start -->
 ## Developer Profile
@@ -123,6 +147,7 @@ git merge upstream/main
 | Learning | self-directed | HIGH |
 
 **Directives:**
+
 - **Communication:** Match a conversational tone. Provide context with responses but keep them focused -- no need for heavy formatting or exhaustive structure. Expect follow-up questions and multi-message request threads.
 - **Decisions:** Present a recommended approach rather than listing options. When presenting alternatives, lead with the recommendation and keep options brief. Expect fast decisions and be ready to pivot quickly when a suggestion is rejected.
 - **Explanations:** Provide concise explanations focused on the 'why' behind key decisions. Skip obvious details -- this developer reads code directly and will ask if something is unclear. Lead with the answer, then brief reasoning.
@@ -132,3 +157,5 @@ git merge upstream/main
 - **Frustrations:** Stay within the boundaries of what is explicitly requested. Do not add unrequested features, refactor beyond scope, or describe work that was not actually done. When uncertain about scope, ask rather than expanding.
 - **Learning:** Treat this developer as someone who has already investigated the problem. Answer targeted questions directly rather than providing broad overviews.
 <!-- GSD:profile-end -->
+
+@RTK.md
