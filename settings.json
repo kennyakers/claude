@@ -1,6 +1,7 @@
 {
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTION": "1"
   },
   "attribution": {
     "commit": "",
@@ -91,7 +92,12 @@
       "Read(//Users/kakers/Desktop/chatable-monorepo/apps/audiobook-mobile/ios/ChatableAudiobook.xcodeproj/**)",
       "Read(//Users/kakers/Desktop/chatable-monorepo/apps/audiobook-mobile/ios/ChatableAudiobook/**)",
       "Bash(pnpm --filter web typecheck 2>&1)",
-      "Bash(pnpm --filter mobile typecheck 2>&1)"
+      "Bash(pnpm --filter mobile typecheck 2>&1)",
+      "Bash(npx gsd-core *)",
+      "Read(.planning/*)",
+      "Write(.planning/*)",
+      "Read(STATE.md)",
+      "Write(STATE.md)"
     ],
     "deny": [
       "Bash(git clean -f*)",
@@ -103,9 +109,7 @@
       "Bash(chmod *)",
       "Bash(chown *)",
       "Bash(sudo *)",
-      "Bash(kill *)",
       "Bash(killall *)",
-      "Bash(pkill *)",
       "Bash(pnpm remove *)",
       "Bash(pnpm prune*)",
       "Bash(pnpm store prune*)",
@@ -117,10 +121,14 @@
       "Bash(brew uninstall *)",
       "Bash(brew remove *)",
       "Bash(brew cleanup --prune-all*)",
-      "Bash(rmdir *)"
+      "Bash(rmdir *)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(.secrets)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -128,6 +136,14 @@
           {
             "type": "command",
             "command": "$HOME/.claude/hooks/gsd-check-update.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/kakers/.claude/hooks/gsd-session-state.sh\""
           }
         ]
       }
@@ -138,8 +154,48 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/kakers/.claude/hooks/gsd-context-monitor.js\"",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-context-monitor.js\"",
             "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/kakers/.claude/hooks/prettier-on-edit.sh\"",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-read-injection-scanner.js\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/kakers/.claude/hooks/gsd-graphify-update.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/kakers/.claude/hooks/gsd-phase-boundary.sh\"",
+            "timeout": 5
           }
         ]
       }
@@ -150,8 +206,122 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/kakers/.claude/hooks/gsd-prompt-guard.js\"",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-prompt-guard.js\"",
             "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-read-guard.js\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-workflow-guard.js\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-worktree-path-guard.js\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/kakers/.claude/hooks/gsd-validate-commit.sh\"",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/new-file-gate.js\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Write-time defaults (non-negotiable): surgical edits over additions. No new files for one small function or wrapper - extend the existing home. Reuse before writing (grep for existing capability first). Near-zero comments, no tracking IDs. Refactor the design instead of patching around it - load the maintainable-typescript skill for any non-trivial change. Evidence before fixes. UI changes: verify light AND dark mode.'"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-context-monitor.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-context-monitor.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-context-monitor.js\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "FileChanged": [
+      {
+        "matcher": "config.json",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"/Users/kakers/.nvm/versions/node/v22.18.0/bin/node\" \"/Users/kakers/.claude/hooks/gsd-config-reload.js\"",
+            "timeout": 8
           }
         ]
       }
@@ -171,7 +341,17 @@
   "extraKnownMarketplaces": {},
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
-  "voiceEnabled": true,
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "autoDreamEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "teammateMode": "auto",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
 }
